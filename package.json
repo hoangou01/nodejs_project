@@ -2,9 +2,11 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
+    "beautiful": "lint-staged",
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resource/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,10 +24,32 @@
     "url": "https://github.com/hoangou01/nodejs_project/issues"
   },
   "homepage": "https://github.com/hoangou01/nodejs_project#readme",
+  "lint-staged": {
+    "src/**/*.{js,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.15.0",
+    "husky": "^8.0.3",
+    "jsdom": "^21.1.0",
+    "lint-staged": "^13.1.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.1.2",
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
+    "sequelize": "^6.28.1"
   }
 }
