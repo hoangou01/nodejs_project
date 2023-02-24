@@ -1,14 +1,14 @@
 const Account = require('../models/Account');
 const bcrypt = require('bcrypt');
-let findAccount =  async (body)=>{
+let findAccount =  async (username)=>{
     return await Account.findOne({
         where:{
-            user_name : body.user_name,
+            user_name : username,
         }
     })
 }
 let registerAccount = async(body)=>{
-    let AccountExists = await findAccount(body);
+    let AccountExists = await findAccount(body.user_name);
     if(AccountExists == null){// exists Account
         bcrypt.hash(body.password , 10 , async(err , hashPass)=>{
             if(err) throw err;
@@ -25,5 +25,8 @@ let registerAccount = async(body)=>{
         return false;
     }
 }
+let comparePass = (password , userpassword)=>{
+    return bcrypt.compareSync(password , userpassword);
+}
         
-  module.exports = {findAccount , registerAccount }
+  module.exports = {findAccount , registerAccount , comparePass }

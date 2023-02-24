@@ -8,7 +8,7 @@ function route(app) {
     app.use('/product', productRouter);
     //home
     app.use('/home', homeRouter);
-    app.use('/register' , accountRouter);
+    app.use('/auth' , accountRouter);
     app.use('/', siteRouter);
 }
 module.exports = route;

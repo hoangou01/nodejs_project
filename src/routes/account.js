@@ -3,16 +3,11 @@ const {validate} = require('../app/validator/accountValidator');
 const {validationResult} = require('express-validator');
 var router = express.Router();
 const accountController = require('../app/controllers/accountController');
-
-router.get('/', accountController.show);
-router.post('/', validate.validateRegisterUser(),(req , res,next)=>{
-    const errs = validationResult(req);
-    if(!errs.isEmpty()){
-        var firstErr = Array.from(errs).map((err) => err.msg)[0];
-        res.send({firstErr});
-        return;
-    }
-    accountController.registerUser
-});
+//show form register
+router.get('/register', accountController.showRegister);
+router.get('/login' , accountController.showLogin);
+router.post('/login' , accountController.login);
+//register
+router.post('/register', accountController.registerUser);
 
 module.exports = router;

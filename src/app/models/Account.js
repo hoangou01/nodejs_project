@@ -20,12 +20,15 @@ const Account = sequelize.define('account',{
     password:{
         type: Sequelize.STRING,
 
-        allowNull: false
+        allowNull: false,
     },
     created_date:{
         type: Sequelize.DATE, 
         defaultValue: Sequelize.NOW
 
+    },refreshToken:{
+        type: Sequelize.STRING,
+        allowNull: true,
     }
    
 },
